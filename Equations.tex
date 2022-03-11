@@ -1,0 +1,1100 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{changepage}
+\date{$5^{th}$ January, 2022}
+\title{Math 3 Equations Revision}
+\author{Muhammed Abdullsalam}
+\numberwithin{equation}{section}
+
+% Columns separation %
+\setlength{\columnsep}{0.5cm}
+\setlength{\columnseprule}{1pt}
+\def\columnseprulecolor{\color{darkgray}}
+
+
+\begin{document}
+	\maketitle
+	\tableofcontents
+	\pagebreak
+	
+	\section{Laplace Transforms}
+	\label{sec_laplace}
+	\subsection{Laplace General Equation}
+	General equation:
+	\begin{equation}
+		L\left[f(t)\right] = \int_{0}^{\infty}f(t) e^{-st}\,dt = F(s)
+		\label{eq_laplace}
+	\end{equation}
+	\\\\
+	\subsection{Basic Laplace Transforms}
+	Basic transforms for Laplace:\\
+	
+	\textbf{Constants}
+	\begin{equation}
+		L[c] = \int_{0}^{\infty}c e^{-st}\,dt = \frac{c}{s}
+		\label{eq_laplace_trans_const}
+	\end{equation}
+	
+	\textbf{Euler's Number Exponents}
+	\begin{equation}
+		L[e^{at}] = \int_{0}^{\infty}e^{at} e^{-st}\,dt = \frac{1}{s - a}
+		\label{eq_laplace_trans_euler_exponent}
+	\end{equation}
+	
+	\textbf{'t' Exponents}
+	\begin{equation}
+		L[t^n] = \frac{n!}{s^{n+1}}
+		\label{eq_laplace_trans_t_exponent}
+	\end{equation}
+	
+	\textbf{Trigonometric Functions}
+	\begin{equation}
+		L[\sin at] = \int_{0}^{\infty}\sin(at) e^{-st}\,dt = \frac{a}{s^2 + a^2}
+		\label{eq_laplace_trans_trig_sin}
+	\end{equation}
+	\begin{equation}
+		L[\cos at] = \int_{0}^{\infty}\cos(at) e^{-st}\,dt = \frac{s}{s^2 + a^2}
+		\label{eq_laplace_trans_trig_cos}
+	\end{equation}
+	\begin{equation}
+		L[\sinh at] = \int_{0}^{\infty}\sinh(at) e^{-st}\,dt = \frac{a}{s^2 - a^2}
+		\label{eq_laplace_trans_trig_sinh}
+	\end{equation}
+	\begin{equation}
+		L[\cosh at] = \int_{0}^{\infty}\cosh(at) e^{-st}\,dt = \frac{s}{s^2 - a^2}
+		\label{eq_laplace_trans_trig_cosh}
+	\end{equation}
+	
+	\subsection{Miscellaneous}
+	Combinations of basic functions:\\
+	
+	\textbf{Euler's Number Exponents $\times$ Trig. Functions}
+	\begin{equation}
+		L[e^{wt} \cos at] = \int_{0}^{\infty}e^{wt}\cos(at) e^{-st\,dx} = \int_{0}^{\infty}\cos(at) e^{(w - s)t} = \frac{s - w}{(s - 2)^2 + a^2}
+		\label{eq_laplace_trans_trig_cos_euler}
+	\end{equation}
+	\begin{equation}
+		L[e^{wt} \sin at] = \int_{0}^{\infty}e^{wt}\sin(at) e^{-st\,dx} = \int_{0}^{\infty}\sin(at) e^{(w - s)t} = \frac{a}{(s - 2)^2 + a^2}
+		\label{eq_laplace_trans_trig_sin_euler}
+	\end{equation}
+	\begin{equation}
+		L[e^{wt} \sinh at] = \int_{0}^{\infty}e^{wt}\sinh(at) e^{-st\,dx} = \int_{0}^{\infty}\sinh(at) e^{(w - s)t} = \frac{a}{(s - 2)^2 - a^2}
+		\label{eq_laplace_trans_trig_sinh_euler}
+	\end{equation}
+	\begin{equation}
+		L[e^{wt} \cosh at] = \int_{0}^{\infty}e^{wt}\cosh(at) e^{-st\,dx} = \int_{0}^{\infty}\cosh(at) e^{(w - s)t} = \frac{s - w}{(s - 2)^2 - a^2}
+		\label{eq_laplace_trans_trig_cosh_euler}
+	\end{equation}
+	
+	\textbf{A Function $\times$ 't' Exponents}
+	\begin{equation}
+		L[t^n f(t)] = (-1)^n \frac{d^n}{ds^n} L[f(t)]
+		\label{eq_laplace_trans_function_t}
+	\end{equation}
+	
+	\subsection{Comprehensive Example}
+	Find Laplace transform of f(t):\\\\
+	\begin{math}
+		f(t) = t^4 + 3\hspace{0.1cm} e^{-6t} \cosh(\sqrt{2}t) + 2\hspace{0.1cm} t^2 \sin(5t)
+	\end{math}\\
+	
+	\textbf{Solution}:\\
+	From equations (\ref{eq_laplace_trans_t_exponent}) \& (\ref{eq_laplace_trans_trig_cosh_euler}) \& (\ref{eq_laplace_trans_function_t}) :\\
+	{\color{darkgray}
+		\begin{flalign}
+			\nonumber
+			L[f(t)] &= L[t^4] + 3\hspace{0.1cm} L[e^{-6t} \cosh(\sqrt{2}t)] + 2\hspace{0.1cm} L[t^2 \sin(5t)]&\\ \nonumber \\ \nonumber
+			&= \frac{4!}{s^{4+1}} + 3\hspace{0.1cm} \frac{s + 6}{(s + 6)^2 - {\sqrt{2}}^2} + 2\hspace{0.1cm} (-1)^2 \frac{d^2}{ds^2} L[\sin(5t)]&\\ \nonumber \\ \nonumber
+			&= \frac{24}{s^5} + 3\hspace{0.1cm}\frac{s + 6}{(s + 6)^2 - 2} + 2\hspace{0.1cm}\frac{d^2}{ds^2}\left(\frac{5}{s^2 + 25}\right)&\\ \nonumber \\ \nonumber
+			&= \frac{24}{s^5} + 3\hspace{0.1cm}\frac{s + 6}{(s + 6)^2 - 2} + 2\hspace{0.1cm}\frac{d}{ds}\left(\frac{0 \times (s^2 + 25) - 2s \times 5}{(s^2 + 25)^2}\right)&\\ \nonumber \\ \nonumber
+			&= \frac{24}{s^5} + 3\hspace{0.1cm}\frac{s + 6}{(s + 6)^2 - 2} + 2(-10)\hspace{0.1cm}\frac{d}{ds}\left(\frac{s}{(s^2 + 25)^2}\right)&\\ \nonumber \\ \nonumber
+			&= \frac{24}{s^5} + 3\hspace{0.1cm}\frac{s + 6}{(s + 6)^2 - 2} - 20\hspace{0.1cm}\frac{(s^2 + 25)^2 - s \times 2(2s(s^2 + 25))}{(s^2 + 25)^4}&\\ \nonumber \\ \nonumber
+			&= \frac{24}{s^5} + 3\hspace{0.1cm}\frac{s + 6}{(s + 6)^2 - 2} - 20\hspace{0.1cm}\frac{(s^2 + 25)^2 - 4s^2 (s^2 + 25)}{(s^2 + 25)^4}&\\ \nonumber \\ \nonumber
+			&= \frac{24}{s^5} + 3\hspace{0.1cm}\frac{s + 6}{(s + 6)^2 - 2} - 20\hspace{0.1cm}\frac{((s^2 + 25))((s^2 + 25) - 4s^2)}{(s^2 + 25)^4}&\\ \nonumber \\ \nonumber
+			&= \frac{24}{s^5} + 3\hspace{0.1cm}\frac{s + 6}{(s + 6)^2 - 2} - 20\hspace{0.1cm}\frac{s^2 + 25 - 4s^2}{(s^2 + 25)^3}&\\ \nonumber \\ \nonumber
+			&= \frac{24}{s^5} + 3\hspace{0.1cm}\frac{s + 6}{(s + 6)^2 - 2} - 20\hspace{0.1cm}\frac{25 - 3s^2}{(s^2 + 25)^3}&\\ \nonumber \\ \nonumber
+			&= \frac{24}{s^5} + 3\hspace{0.1cm}\frac{s + 6}{(s + 6)^2 - 2} + 20\hspace{0.1cm}\frac{3s^2 - 25}{(s^2 + 25)^3}
+		\end{flalign}
+	}
+	
+	\pagebreak
+	
+	\section{Inverse Laplace Transforms}
+	\label{sec_inverse_laplace}
+	You can obtain inverse Laplace transform using same equations of section \ref{sec_laplace}.\\
+	
+	\begin{equation}
+		f(t) = L^{-1}[F(s)]
+		\label{eq_inverse_laplace}
+	\end{equation}\\
+	
+	Only thing you need to do is to manipulate and simplify your equation to looks like one of the right hand side part of equations in section \ref{sec_laplace}, then its inverse Laplace is the left hand side part of the same equation
+	
+	\subsection{Inverse Laplace Equations}
+	Basic transforms for Laplace:\\
+	
+	\textbf{Constants}
+	\begin{equation}
+		L^{-1}\left[\frac{c}{s}\right] = c
+		\label{eq_inverse_laplace_trans_const}
+	\end{equation}
+	
+	\textbf{Euler's Number Exponents}
+	\begin{equation}
+		L^{-1}\left[\frac{1}{s - a}\right] = e^{at}
+		\label{eq_inverse_laplace_trans_euler_exponent}
+	\end{equation}
+	
+	\textbf{'t' Exponents}
+	\begin{equation}
+		L^{-1}\left[\frac{n!}{s^{n+1}}\right] = t^n
+		\label{eq_inverse_laplace_trans_t_exponent}
+	\end{equation}
+	
+	\textbf{Trigonometric Functions}
+	\begin{equation}
+		L^{-1}\left[\frac{a}{s^2 + a^2}\right] = \sin at
+		\label{eq_inverse_laplace_trans_trig_sin}
+	\end{equation}
+	\begin{equation}
+		L^{-1}\left[\frac{s}{s^2 + a^2}\right] = \cos at
+		\label{eq_inverse_laplace_trans_trig_cos}
+	\end{equation}
+	\begin{equation}
+		L^{-1}\left[\frac{a}{s^2 - a^2}\right]  = \sinh at
+		\label{eq_inverse_laplace_trans_trig_sinh}
+	\end{equation}
+	\begin{equation}
+		L^{-1}\left[\frac{s}{s^2 - a^2}\right]  = \cosh at
+		\label{eq_inverse_laplace_trans_trig_cosh}
+	\end{equation}
+	
+	\textbf{Euler's Number Exponents $\times$ Trig. Functions}
+	\begin{equation}
+		L^{-1}\left[\frac{s - w}{(s - 2)^2 + a^2}\right] = e^{wt} \cos at
+		\label{eq_inverse_laplace_trans_trig_cos_euler}
+	\end{equation}
+	\begin{equation}
+		L^{-1}\left[\frac{a}{(s - 2)^2 + a^2}\right] = e^{wt} \sin at
+		\label{eq_inverse_laplace_trans_trig_sin_euler}
+	\end{equation}
+	\begin{equation}
+		L^{-1}\left[\frac{a}{(s - 2)^2 - a^2}\right] = e^{wt} \sinh at
+		\label{eq_inverse_laplace_trans_trig_sinh_euler}
+	\end{equation}
+	\begin{equation}
+		L^{-1}\left[\frac{s - w}{(s - 2)^2 - a^2}\right] = e^{wt} \cosh at
+		\label{eq_inverse_laplace_trans_trig_cosh_euler}
+	\end{equation}
+	
+	\textbf{A Function $\times$ 't' Exponents}
+	\begin{equation}
+		L^{-1}[F^{(n)}(s)] = (-1)^n \hspace{0.1cm} t^n \hspace{0.1cm} f(t)
+		\label{eq_inverse_laplace_trans_function_t}
+	\end{equation}\\
+
+	\textbf{Conclusion}: You can see that each Laplace transform equation in section \ref{sec_inverse_laplace} has its corresponding inverse Laplace transform equation in section \ref{sec_laplace}.\\
+	So that equation 1.X has corresponding inverse equation 2.X .
+	
+	\pagebreak
+	
+	\subsection{Revision on Partial Fractions}
+	Before proceeding to any example we must revise some essential rules of partial fractions...\\
+	
+	The theory of partial fractions applies chiefly to the ratio of two polynomials in which the degree of the numerator is strictly less than that of the denominator. Such a ratio is called a “proper rational function”. \cite{Hobson_2002}\\\\
+	For a rational function which is not proper, it is necessary first to use long division of
+	polynomials in order to express it as the sum of a polynomial and a proper rational function.\\
+	
+	\textbf{Linear Factors in Denominator}
+		\begin{flalign}
+			\frac{7x + 8}{(2x + 3)(x - 1)} \equiv \frac{A}{2x + 3} + \frac{B}{x - 1}
+			\label{eq_partial_frac_1}
+		\end{flalign}\\
+		Multiplying by $(2x + 3)(x - 1)$, we obtain
+		\begin{flalign}\nonumber
+			7x + 8 \equiv A(x - 1) + B(2x + 3)
+		\end{flalign}
+		let $x = 1$,
+		\begin{flalign}\nonumber
+			7 + 8 &= A(1 - 1) + B(2 + 3)\\ \nonumber
+			7 + 8 &= B(2 + 3)\\ \nonumber
+			B &= \frac{7 + 8}{2 + 3} = \frac{15}{5} = 3
+		\end{flalign}
+	\\
+		let $x = -\frac{3}{2}$,
+		\begin{flalign}\nonumber
+			7(\frac{-3}{2}) + 8 &= A(\frac{-3}{2} - 1) + B(2(\frac{-3}{2}) + 3)\\ \nonumber
+			\frac{-21}{2} + 8 &= A(\frac{-3}{2} - 1)\\ \nonumber
+			A &= \frac{\frac{-21}{2} + 8}{\frac{-3}{2} - 1} = 1
+		\end{flalign}
+		\begin{flalign}\nonumber
+			\frac{7x + 8}{(2x + 3)(x - 1)} = \frac{1}{2x + 3} + \frac{3}{x - 1}
+		\end{flalign}\\
+	
+	\textbf{One Linear Factor \& One Quadratic Factor in Denominator}\\\\
+	We should observe firstly that the quadratic factor will not reduce conveniently into two
+	linear factors. If it did, the method would be as in the previous paragraph. \cite{Hobson_2002}
+	\begin{flalign}
+		\frac{3x^2 + 9}{(x - 5)(x^2 + 2x + 7)} \equiv \frac{A}{x - 5} + \frac{Bx + C}{x^2 + 2x + 7}
+		\label{eq_partial_frac_2}
+	\end{flalign}\\
+	Multiplying by $(x - 5)(x^2 + 2x + 7)$, we obtain
+	\begin{flalign}\nonumber
+		3x^2 + 9 \equiv A(x^2 + 2x + 7) + (Bx + C)(x - 5)
+	\end{flalign}
+	let $x = 5$,
+	\begin{flalign}\nonumber
+		3(5)^2 + 9 &= A(5^2 + 2(5) + 7) + (Bx + C)(5 - 5)\\ \nonumber
+		75 + 9 &= A(25 + 10 + 7)\\ \nonumber
+		A &= \frac{84}{42} =  2
+	\end{flalign}
+	
+	No other convenient values of $x$ may be substituted; but two polynomial expressions can be identical only if their corresponding coefficients are the same in value. We therefore equate suitable coefficients to find B and C; usually, the coefficients of the highest and lowest powers
+	of $x$. \cite{Hobson_2002}\\\\
+	Equating coefficients of $x^2$, $3 = A + B$ and hence $B = 1$.\\\\
+	Equating constant terms (the coefficients of $x^0$), $9 = 7A - 5C = 14 - 5C$ and hence $C = 1$.
+	\begin{flalign}\nonumber
+		\frac{3x^2 + 9}{(x - 5)(x^2 + 2x + 7)} = \frac{2}{x - 5} + \frac{x + 1}{x^2 + 2x + 7}
+	\end{flalign}
+	\pagebreak
+	
+	\textbf{Repeated Linear Factor in Denominator}
+	\begin{flalign}
+		\frac{9}{(x + 1)^2(x - 2)} \equiv \frac{A}{x + 1} + \frac{C}{(x + 1)^2} + \frac{D}{x - 2}
+		\label{eq_partial_frac_3}
+	\end{flalign}\\
+	Eliminating fractions, we obtain
+	\begin{flalign}\nonumber
+		9 \equiv A(x + 1)(x - 2) + C(x - 2) + D(x + 1)^2
+	\end{flalign}\\
+	Putting $x = -1$ gives $9 = -3C$ so that $C = -3$.\\\\
+	Putting $x = 2$ gives $9 = 9D$ so that $D = 1$.\\\\
+	Equating coefficients of $x^2$ gives $0 = A + D$ so that $A = -1$.
+	\begin{flalign}\nonumber
+		\frac{9}{(x + 1)^2(x - 2)} = \frac{-1}{x + 1} - \frac{3}{(x + 1)^2} + \frac{1}{x - 2}
+	\end{flalign}
+	\pagebreak
+	
+	\subsection{Examples}
+	Find Inverse Laplace of F(s):
+	\begin{flalign}\nonumber
+		1.\hspace{0.3cm} &F(s) = \frac{s + 7}{s^2 - 3s - 10}&
+	\end{flalign}\\
+	
+	\textbf{Solution}:\\
+	%From equations (\ref{eq_laplace_trans_t_exponent}) \& (\ref{eq_laplace_trans_trig_cosh_euler}) \& (\ref{eq_laplace_trans_function_t}) :\\
+	By Factorizing the denominator :
+	{\color{darkgray}
+		\begin{flalign}\nonumber
+			\frac{s + 7}{s^2 - 3s - 10} = \frac{s + 7}{(s + 2) (s - 5)}
+		\end{flalign}
+	}
+	From equation (\ref{eq_partial_frac_1}) :\\
+	{\color{darkgray}
+		\begin{flalign}\nonumber
+			\frac{s + 7}{(s + 2) (s - 5)} &= \frac{A}{s + 2} + \frac{B}{s - 5}
+		\end{flalign}
+	}
+	Multiplying by $(s + 2) (s - 5)$, we obtain
+	{\color{darkgray}
+		\begin{flalign}\nonumber
+			s + 7 &= A(s - 5) + B(s + 2)
+		\end{flalign}
+	}
+	let $s = 5$
+	{\color{darkgray}
+		\begin{flalign}\nonumber
+			&5 + 7 = A(5 - 5) + B(5 + 2)\\ \nonumber \\ \nonumber
+			&5 + 7 = B(5 + 2)\\ \nonumber \\ \nonumber
+			&B = \frac{5 + 7}{5 + 2} = \frac{12}{7}
+		\end{flalign}
+	}
+	let $s = -2$
+	{\color{darkgray}
+		\begin{flalign}\nonumber
+			-&2 + 7 = A(-2 - 5) + B(-2 + 2)\\ \nonumber \\ \nonumber
+			-&2 + 7 = A(-2 - 5)\\ \nonumber \\ \nonumber
+			&A = \frac{-2 + 7}{-2 - 5} = -\frac{5}{7}
+		\end{flalign}
+	}
+
+	From equation (\ref{eq_inverse_laplace_trans_euler_exponent}) :\\
+	{\color{darkgray}
+		\begin{flalign}\nonumber
+			&F(s) = (-\frac{5}{7})\frac{1}{s + 2} + (\frac{12}{7})\frac{1}{s - 5} \\ \nonumber \\ \nonumber
+			&L^{-1}[F(s)] = -\frac{5}{7}\hspace{0.1cm} e^{-2t} + \frac{12}{7}\hspace{0.1cm} e^{5t}
+		\end{flalign}
+	}
+\\
+
+	\begin{flalign}\nonumber
+		2.\hspace{0.3cm} &F(s) = \frac{3s - 2}{2s^2 - 6s - 2}&
+	\end{flalign}\\
+
+	\textbf{Solution}:
+	%From equations (\ref{eq_laplace_trans_t_exponent}) \& (\ref{eq_laplace_trans_trig_cosh_euler}) \& (\ref{eq_laplace_trans_function_t}) :\\
+	{\color{darkgray}
+		\begin{multicols}{2}
+		\begin{flalign}\nonumber
+			F(s) &= (1)\frac{3s - 2}{2s^2 - 6s - 2}\\ \nonumber \\ \nonumber
+			&= (\frac{2}{2})\frac{3s - 2}{2s^2 - 6s - 2}\\ \nonumber \\ \nonumber
+			&= \frac{\frac{3}{2}\hspace{0.1cm}s - \frac{2}{2}}{\frac{2}{2}\hspace{0.1cm}s^2 - \frac{6}{2}\hspace{0.1cm}s - \frac{2}{2}}\\ \nonumber \\ \nonumber
+			&= \frac{\frac{3}{2}\hspace{0.1cm}s - 1}{s^2 - 3s - 1}\\ \nonumber \\ \nonumber
+			&= \frac{\frac{3}{2}\hspace{0.1cm}s - 1}{s^2 - 3s - 1 + 0}\\ \nonumber \\ \nonumber
+			&= \frac{\frac{3}{2}\hspace{0.1cm}s - 1}{s^2 - 3s - 1 + ((\frac{3}{2})^2 - (\frac{3}{2})^2)}
+		\end{flalign}
+		\columnbreak
+		\begin{flalign}\nonumber \\ \nonumber \\ \nonumber \\ \nonumber
+			&= \frac{\frac{3}{2}\hspace{0.1cm}s - 1}{s^2 - 3s - 1 + \frac{9}{4} - \frac{9}{4}}\\ \nonumber \\ \nonumber
+			&= \frac{\frac{3}{2}\hspace{0.1cm}s - 1}{s^2 - 3s + \frac{9}{4} - 1 - \frac{9}{4}}\\ \nonumber \\ \nonumber
+			&= \frac{\frac{3}{2}\hspace{0.1cm}s - 1}{(s - \frac{3}{2})^2 - \frac{13}{4}} \\ \nonumber \\ \nonumber
+			&= \frac{\frac{3}{2}\hspace{0.1cm}s}{(s - \frac{3}{2})^2 - \frac{13}{4}} - \frac{1}{(s - \frac{3}{2})^2 - \frac{13}{4}} \\ \nonumber \\ \nonumber
+			&= \frac{3}{2}\frac{s - \frac{3}{2} + \frac{3}{2}}{(s - \frac{3}{2})^2 - \frac{13}{4}} - \frac{1}{(s - \frac{3}{2})^2 - \frac{13}{4}}
+		\end{flalign}
+		\end{multicols}
+		\begin{flalign}\nonumber
+			&= \frac{3}{2}\left(\frac{s - \frac{3}{2}}{(s - \frac{3}{2})^2 - \frac{13}{4}} + \frac{\frac{3}{2}}{(s - \frac{3}{2})^2 - \frac{13}{4}}\right) - \frac{1}{(s - \frac{3}{2})^2 - \frac{13}{4}} \\ \nonumber \\ \nonumber
+			&= \frac{3}{2}\frac{s - \frac{3}{2}}{(s - \frac{3}{2})^2 - \frac{13}{4}} + \frac{3}{2}\frac{\frac{3}{2}}{(s - \frac{3}{2})^2 - \frac{13}{4}} - \frac{1}{(s - \frac{3}{2})^2 - \frac{13}{4}} \\ \nonumber \\ \nonumber
+			&= \frac{3}{2}\frac{s - \frac{3}{2}}{(s - \frac{3}{2})^2 - \frac{13}{4}} + \frac{9}{4}\frac{1}{(s - \frac{3}{2})^2 - \frac{13}{4}} - \frac{1}{(s - \frac{3}{2})^2 - \frac{13}{4}} \\ \nonumber \\ \nonumber
+			&= \frac{3}{2}\frac{s - \frac{3}{2}}{(s - \frac{3}{2})^2 - \frac{13}{4}} + \frac{9}{4}\times\frac{2}{\sqrt{13}}\frac{\frac{\sqrt{13}}{2}}{(s - \frac{3}{2})^2 - \frac{13}{4}} - \frac{2}{\sqrt{13}}\frac{\frac{\sqrt{13}}{2}}{(s - \frac{3}{2})^2 - \frac{13}{4}} \\ \nonumber \\ \nonumber
+			&= \frac{3}{2}\frac{s - \frac{3}{2}}{(s - \frac{3}{2})^2 - \frac{13}{4}} + \frac{9\sqrt{13}}{26}\frac{\frac{\sqrt{13}}{2}}{(s - \frac{3}{2})^2 - \frac{13}{4}} - \frac{2}{\sqrt{13}}\frac{\frac{\sqrt{13}}{2}}{(s - \frac{3}{2})^2 - \frac{13}{4}} \\ \nonumber \\ \nonumber
+			L^{-1}[F(s)] &= \frac{3}{2} \hspace{0.1cm} e^{\frac{3}{2}t}\hspace{0.1cm} \cosh(\frac{\sqrt{13}}{2}\hspace{0.1cm}t) + \frac{9\sqrt{13}}{26} \hspace{0.1cm} e^{\frac{3}{2}t}\hspace{0.1cm} \sinh(\frac{\sqrt{13}}{2}\hspace{0.1cm}t) - \frac{2}{\sqrt{13}} \hspace{0.1cm} e^{\frac{3}{2}t}\hspace{0.1cm} \sinh(\frac{\sqrt{13}}{2}\hspace{0.1cm}t)\\ \nonumber \\ \nonumber
+			&= \frac{3}{2} \hspace{0.1cm} e^{\frac{3}{2}t}\hspace{0.1cm} \cosh(\frac{\sqrt{13}}{2}\hspace{0.1cm}t) + \frac{5\sqrt{13}}{26} \hspace{0.1cm} e^{\frac{3}{2}t}\hspace{0.1cm} \sinh(\frac{\sqrt{13}}{2}\hspace{0.1cm}t)
+		\end{flalign}
+	}
+	\pagebreak
+
+	\section{Fourier Series}
+		\label{sec_fourier_series}
+		\textbf{\Large F}ourier series is a periodic function composed of harmonically related sinusoids combined by a weighted summation. \cite{wikipedia_fourier_series}
+
+	\subsection{Revision on Some Trig. Functions}
+
+		\begin{equation}
+			\sin(a) \sin(b) = \frac{1}{2}\left[\cos(a - b) - \cos(a + b)\right]
+			\label{eq_trig_1}
+		\end{equation}
+	
+		\begin{equation}
+		\cos(a) \cos(b) = \frac{1}{2}\left[\cos(a - b) + \cos(a + b)\right]
+		\label{eq_trig_2}
+		\end{equation}
+	
+		\begin{equation}
+		\sin(a) \cos(b) = \frac{1}{2}\left[\sin(a - b) + \sin(a + b)\right]
+		\label{eq_trig_3}
+		\end{equation}\\
+	
+		\subsection{Definite Integrals of Some Combined Trig. Functions}
+		Some of the following results can be proven using equations (\ref{eq_trig_1}) (\ref{eq_trig_2}) (\ref{eq_trig_3})\\
+		
+		For any integer m
+		\begin{equation}
+			\int_{-\pi}^{\pi}\sin(mt)\,dt = 0
+			\label{eq_def_integral_sin}
+		\end{equation}
+
+		For non-zero integer m
+		\begin{equation}
+			\int_{-\pi}^{\pi}\cos(mt)\,dt = 0
+			\label{eq_def_integral_cos}
+		\end{equation}
+	
+		For any integers m, n
+		\begin{equation}
+			\int_{-\pi}^{\pi}\sin(mt)\cos(nt)\,dt = 0
+			\label{eq_def_integral_sin_cos}
+		\end{equation}
+	
+		When integers m $\neq$ n
+		\begin{equation}
+			\int_{-\pi}^{\pi}\sin(mt)\sin(nt)\,dt = 0
+			\label{eq_def_integral_sin_sin}
+		\end{equation}
+	
+		When m is non-zero int
+		\begin{equation}
+			\int_{-\pi}^{\pi}\sin^2(mt)\,dt = \pi
+			\label{eq_def_integral_sin^2}
+		\end{equation}
+	
+		When integers m $\neq$ n
+		\begin{equation}
+			\int_{-\pi}^{\pi}\cos(mt)\cos(nt)\,dt = 0
+			\label{eq_def_integral_cos_cos}
+		\end{equation}
+		
+		When m is non-zero int
+		\begin{equation}
+			\int_{-\pi}^{\pi}\cos^2(mt)\,dt = \pi
+			\label{eq_def_integral_cos^2}
+		\end{equation}\\
+		
+
+		\subsection{Fourier Series General Formula}
+		A simple description of Fourier series is expressing a function as sum of weighted sine and cosine terms.\\
+		
+		If we have a function $f(t)$, we can express it like this 
+		\begin{flalign}\nonumber
+			f(t) = &a_0 \cos(0t) + a_1 \cos(t) + a_2 \cos(2t)  + a_3 \cos(3t) + ...\\ \nonumber
+			&b_0 \sin(0t) + b_1 \sin(t) + b_2 \sin(2t) + b_3 \sin(3t) + ...
+		\end{flalign}
+		\begin{flalign}\nonumber
+			= a_0 + &a_1 \cos(t) + a_2 \cos(2t)  + a_3 \cos(3t) + ...\\ \nonumber
+			&b_1 \sin(t) + b_2 \sin(2t) + b_3 \sin(3t) + ...
+		\end{flalign}\\
+		
+		We can express this in a neater way
+		\begin{equation}
+			f(t) = a_0 + \sum_{n = 1}^\infty a_n \cos(nt) + b_n \sin(nt)
+			\label{eq_fourier_general}
+		\end{equation}
+
+		\textbf{Finding First Term $(a_0)$}
+		\begin{flalign}\nonumber
+			\int_{-\pi}^{\pi}f(t)\,dt = \int_{-\pi}^{\pi} a_0 \,dt + \sum_{n = 1}^\infty \int_{-\pi}^{\pi} a_n \cos(nt) \,dt + \int_{-\pi}^{\pi} b_n \sin(nt) \,dt
+		\end{flalign}
+		From equations (\ref{eq_def_integral_sin}) \& (\ref{eq_def_integral_cos})
+		\begin{flalign}\nonumber
+			\int_{-\pi}^{\pi}f(t) \,dt &= \int_{-\pi}^{\pi} a_0 \,dt + \sum_{n = 1}^\infty 0 + 0\\ \nonumber
+			&= \int_{-\pi}^{\pi} a_0 \,dt\\ \nonumber
+			&= a_0 [t]|_{-\pi}^{\pi}\\ \nonumber
+			&= a_0 [\pi - (-\pi)]\\ \nonumber
+			&= a_0 [\pi + \pi]\\ \nonumber
+			&= a_0 (2\pi)
+		\end{flalign}
+	
+		\begin{equation}
+			a_0 = \frac{1}{2\pi} \int_{-\pi}^{\pi}f(t) \,dt
+			\label{eq_fourier_first_term}
+		\end{equation}
+		\\
+	
+	\textbf{Finding General Equation Coefficients for Cosine Terms} $(a_n)$
+		\begin{adjustwidth}{-50pt}{0pt}
+		\begin{flalign}\nonumber
+			\int_{-\pi}^{\pi}f(t) \cos(mt)\,dt = \int_{-\pi}^{\pi} a_0 \cos(mt) \,dt + \sum_{n = 1}^\infty \int_{-\pi}^{\pi} a_n \cos(nt) \cos(mt) \,dt + \int_{-\pi}^{\pi} b_n \sin(nt) \cos(mt) \,dt
+		\end{flalign}
+		\end{adjustwidth}
+		From equations (\ref{eq_def_integral_cos}) (\ref{eq_def_integral_cos_cos}) (\ref{eq_def_integral_sin_cos}) all terms will equal to zero except cosine term where $m = n$
+		\begin{flalign*}
+			\int_{-\pi}^{\pi}f(t) \cos(mt)\,dt &= \int_{-\pi}^{\pi} a_n \cos(nt) \cos(mt)\\
+			= \int_{-\pi}^{\pi}f(t) \cos(nt)\,dt &= \int_{-\pi}^{\pi} a_n \cos^2(nt)
+		\end{flalign*}
+	
+		From equation (\ref{eq_def_integral_cos^2})
+		\begin{flalign}\nonumber
+			&\int_{-\pi}^{\pi}f(t) \cos(nt)\,dt = a_n\hspace{0.1cm} \pi
+		\end{flalign}
+	
+		\begin{equation}
+			a_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) \cos(nt)\,dt
+			\label{eq_fourier_cos_coeff}
+		\end{equation}\pagebreak
+		
+		\textbf{Finding General Equation Coefficients for Sine Terms} $(b_n)$
+		\begin{adjustwidth}{-50pt}{0pt}
+			\begin{flalign}\nonumber
+				\int_{-\pi}^{\pi}f(t) \sin(mt)\,dt = \int_{-\pi}^{\pi} a_0 \sin(mt) \,dt + \sum_{n = 1}^\infty \int_{-\pi}^{\pi} a_n \cos(nt) \sin(mt) \,dt + \int_{-\pi}^{\pi} b_n \sin(nt) \sin(mt) \,dt
+			\end{flalign}
+		\end{adjustwidth}
+		From equations (\ref{eq_def_integral_sin}) (\ref{eq_def_integral_sin_sin}) (\ref{eq_def_integral_sin_cos}) all terms will equal to zero except sine term where $m = n$
+		\begin{flalign*}
+			\int_{-\pi}^{\pi}f(t) \sin(mt)\,dt &= \int_{-\pi}^{\pi} b_n \sin(nt) \sin(mt)\\
+			= \int_{-\pi}^{\pi}f(t) \sin(nt)\,dt &= \int_{-\pi}^{\pi} b_n \sin^2(nt)
+		\end{flalign*}
+		
+		From equation (\ref{eq_def_integral_sin^2})
+		\begin{flalign}\nonumber
+			&\int_{-\pi}^{\pi}f(t) \sin(nt)\,dt = b_n\hspace{0.1cm} \pi
+		\end{flalign}
+	
+		\begin{equation}
+				b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(t) \sin(nt)\,dt
+				\label{eq_fourier_sin_coeff}
+		\end{equation}\\
+
+		\textbf{Formula for Other Intervals}
+		
+		If you try to apply Fourier transform on a function from interval $\left[-L, L\right]$ then the equations will slightly change
+		
+		\begin{equation}
+			a_0 = \frac{1}{2L} \int_{-L}^{L}f(t) \,dt
+			\label{eq_fourier_first_term_other_interval}
+		\end{equation}
+		
+		\begin{equation}
+			a_n = \frac{1}{L} \int_{-L}^{L} f(t) \cos\left(\frac{n \pi t}{L}\right)\,dt
+			\label{eq_fourier_cos_coeff_other_interval}
+		\end{equation}
+		
+		\begin{equation}
+			b_n = \frac{1}{L} \int_{-L}^{L} f(t) \sin\left(\frac{n \pi t}{L}\right)\,dt
+			\label{eq_fourier_sin_coeff_other_interval}
+		\end{equation}
+
+		\pagebreak
+		
+	\subsection{Examples}
+	Find Fourier series of $f(x)$:
+	\begin{flalign}\nonumber
+		1.\hspace{0.3cm} &f(x) = x\hspace{0.1cm} , \hspace{2cm} -\pi \leq x \leq \pi&
+	\end{flalign}\\
+
+	\textbf{Solution}:\\
+	
+	From equation (\ref{eq_fourier_general}), we can write
+	{\color{darkgray}
+		\begin{flalign*}
+			f(x) = a_0 + \sum_{n = 1}^\infty a_n \cos(nt) + b_n \sin(nt)
+		\end{flalign*}
+	}
+	Lets find the first term as in equation (\ref{eq_fourier_first_term})
+	{\color{darkgray}
+		\begin{flalign*}
+			a_0 &= \frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)\,dx\\ \\
+			&= \frac{1}{2\pi}\int_{-\pi}^{\pi}x\,dx\\ \\
+			&= \frac{1}{2\pi}[\frac{1}{2}x^2]|_{-\pi}^{pi}\\ \\
+			&= \frac{1}{2\pi}\times\frac{1}{2}[\pi^2 - (-\pi)^2]\\ \\
+			&= \frac{1}{4\pi}[\pi^2 - \pi^2]\\ \\
+			&= \frac{1}{4\pi}[0]\\ \\
+			&= 0
+		\end{flalign*}
+	}
+	\\ \\ \\
+	Finding the general equation coefficient of cosine terms from equation (\ref{eq_fourier_cos_coeff})
+	{\color{darkgray}
+		\begin{flalign*}
+			a_n &= \frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos(nx)\,dx\\ \\
+			&= \frac{1}{\pi}\int_{-\pi}^{\pi}x\cos(nx)\,dx
+		\end{flalign*}
+	}
+
+	Lets recall how to integrate by parts:	\\
+	To summarize, the formula for “integration by parts”\cite{Hobson_2002}
+	\begin{flalign*}
+		\int u\hspace{0.1cm}\frac{dv}{dx}\,dx = uv - \int v\hspace{0.1cm}\frac{du}{dx}dx
+	\end{flalign*}
+
+	So ,
+	{\color{darkgray}
+		\begin{flalign*}
+			a_n &= \frac{1}{\pi}\left[\frac{x}{n}\sin(nx) - \frac{1}{n}\int_{-\pi}^{\pi}\sin(nx)\,dx\right]_{-\pi}^{\pi}\\ \\
+			&= \frac{1}{\pi}\left[\frac{x}{n}\sin(nx) - \frac{1}{n}\left[-\frac{1}{n}\cos(nx)\right]_{-\pi}^{\pi}\right]_{-\pi}^{\pi}\\ \\
+			&= \frac{1}{\pi}\left[\frac{x}{n}\sin(nx) + \frac{1}{n^2}\left[\cos(nx)\right]_{-\pi}^{\pi}\right]_{-\pi}^{\pi}
+		\end{flalign*}
+		\begin{adjustwidth}{-50pt}{0pt}
+			\begin{flalign*}
+				&= \frac{1}{\pi}\left[ \left(\frac{\pi}{n}\sin(n\pi) + \frac{1}{n^2}\left[\cos(n\pi) - \cos(-n\pi)\right]\right) - \left(\frac{-\pi}{n}\sin(-n\pi) + \frac{1}{n^2}\left[\cos(n\pi) - \cos(-n\pi)\right]\right)\right]
+			\end{flalign*}
+		\end{adjustwidth}
+		\begin{flalign*}
+			&= \frac{1}{\pi}\left[ \left(\frac{\pi}{n}\sin(n\pi) + \frac{1}{n^2}\left[0\right]\right) - \left(\frac{-\pi}{n}\sin(-n\pi) + \frac{1}{n^2}\left[0\right]\right)\right]\\ 
+			&= \frac{1}{\pi}\left[ \frac{\pi}{n}\sin(n\pi) - \frac{-\pi}{n}\sin(-n\pi)\right]\\ 
+			&= \frac{1}{\pi}\left[ \frac{\pi}{n}\sin(n\pi) - \frac{\pi}{n}\sin(n\pi)\right]\\
+			&= \frac{1}{\pi}\left[0 - 0\right]\\
+			&= \frac{1}{\pi}\left[0\right]\\
+			&= 0
+		\end{flalign*}
+	}
+	\\ \\
+	Finding the general equation coefficient of cosine terms from equation (\ref{eq_fourier_sin_coeff})
+	{\color{darkgray}
+		\begin{flalign*}
+			b_n &= \frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin(nx)\,dx\\ \\
+			&= \frac{1}{\pi}\int_{-\pi}^{\pi}x\sin(nx)\,dx
+		\end{flalign*}
+	}
+	Integrate by parts
+	\begin{flalign*}
+		\int u\hspace{0.1cm}\frac{dv}{dx}\,dx = uv - \int v\hspace{0.1cm}\frac{du}{dx}\,dx
+	\end{flalign*}
+	{\color{darkgray}
+		\begin{flalign*}
+			b_n &= \frac{1}{\pi}\left[-\frac{x}{n}\cos(nx) - \frac{-1}{n}\int_{-\pi}^{\pi}\cos(nx)\,dx\right]_{-\pi}^{\pi}\\ \\
+			&= \frac{1}{\pi}\left[-\frac{x}{n}\cos(nx) + \frac{1}{n}\left[\frac{1}{n}\sin(nx)\right]_{-\pi}^{\pi}\right]_{-\pi}^{\pi}\\ \\
+			&= \frac{1}{\pi}\left[-\frac{x}{n}\cos(nx) + \frac{1}{n^2}\left[\sin(nx)\right]_{-\pi}^{\pi}\right]_{-\pi}^{\pi}
+		\end{flalign*}
+		\begin{adjustwidth}{-50pt}{0pt}
+			\begin{flalign*}
+				&= \frac{1}{\pi}\left[ \left(-\frac{\pi}{n}\cos(n\pi) + \frac{1}{n^2}\left[\sin(n\pi) - \sin(-n\pi)\right]\right) - \left(-\frac{-\pi}{n}\cos(-n\pi) + \frac{1}{n^2}\left[\sin(n\pi) - \sin(-n\pi)\right]\right)\right]
+			\end{flalign*}
+		\end{adjustwidth}
+		\begin{flalign*}
+			&= \frac{1}{\pi}\left[ \left(-\frac{\pi}{n}\cos(n\pi) + \frac{1}{n^2}\left[0 - 0\right]\right) - \left(-\frac{-\pi}{n}\cos(-n\pi) + \frac{1}{n^2}\left[0 - 0\right]\right)\right]\\
+			&= \frac{1}{\pi}\left[ \left(-\frac{\pi}{n}\cos(n\pi) + \frac{1}{n^2}\left[0\right]\right) - \left(-\frac{-\pi}{n}\cos(-n\pi) + \frac{1}{n^2}\left[0\right]\right)\right]\\
+			&= \frac{1}{\pi}\left[-\frac{\pi}{n}\cos(n\pi) - \frac{\pi}{n}\cos(-n\pi)\right]\\
+			&= \frac{1}{\pi}\left[-\frac{2\pi}{n}\cos(n\pi)\right]\\
+		\end{flalign*}		
+	}\\ \\
+
+	Lets trace $\cos(n\pi)$ through $n \in \{1, 2, 3, 4, 5\}$
+	\begin{multicols}{2}
+	\begin{flalign*}
+		&\cos(\pi) = -1,\\
+		&\cos(2\pi) = 1,\\
+		&\cos(3\pi) = -1,
+	\end{flalign*}
+	\columnbreak
+	\begin{flalign*}\\ \\
+		\cos(4\pi) &= 1,\\
+		\cos(5\pi) &= -1
+	\end{flalign*}
+	\end{multicols}
+	\textbf{Conclusion:} when $n$ is odd the result will be -ve, and when it is even the result will be +ve.\\
+	We can express this in a simple way
+	\begin{equation}
+		\cos(n\pi) = (-1)^n
+		\label{eq_cos_n_pi}
+	\end{equation}
+	so that when $n$ is even the power will neutralize the -ve, otherwise the result will be positive.\\
+	
+	Lets continue our solution\\
+	From equation (\ref{eq_cos_n_pi})
+	{\color{darkgray}
+		\begin{flalign*}
+			b_n &= \frac{1}{\pi}\left[-\frac{2\pi}{n}\cos(n\pi)\right] = \frac{2}{n}(-1)(-1)^n\\
+			&= \frac{2}{n}(-1)^{n + 1}
+		\end{flalign*}
+	}
+	So
+	{\color{darkgray}
+		\begin{flalign*}
+			f(x) &= a_0 + \sum_{n = 1}^\infty a_n \cos(nt) + b_n \sin(nt)\\
+			&= 0 + \sum_{n = 1}^\infty 0 + (-1)^{n + 1}\hspace{0.1cm}\frac{2}{n} \sin(nt)\\
+			&= \sum_{n = 1}^\infty (-1)^{n + 1}\hspace{0.1cm}\frac{2}{n} \sin(nt)\\
+			&= (-1)^{1 + 1}\hspace{0.1cm}\frac{2}{1} \sin(t) + (-1)^{2 + 1}\hspace{0.1cm}\frac{2}{2} \sin(2t) + (-1)^{3 + 1}\hspace{0.1cm}\frac{2}{3} \sin(3t) + (-1)^{4 + 1}\hspace{0.1cm}\frac{2}{4} \sin(4t) + ...\\
+			&= (-1)^{2}\hspace{0.1cm}2 \sin(t) + (-1)^{3}\hspace{0.1cm}1 \sin(2t) + (-1)^{4}\hspace{0.1cm}\frac{2}{3} \sin(3t) + (-1)^{5}\hspace{0.1cm}\frac{1}{2} \sin(4t) + ...\\
+			&= 2 \sin(t) - \sin(2t) + \frac{2}{3} \sin(3t) - \frac{1}{2} \sin(4t) + ...
+		\end{flalign*}
+	}
+	\textbf{\large Odd \& Even Functions}
+	
+	Note that in previous example the first term $(a_n)$ and the coefficient of cosine terms($a_n$), both equal to $0$.\\
+	This gives us an important conclusion: when $f(x)$ is odd we will calculate the terms with odd function only (sine terms), and terms with even function (first term and cosine terms) will equal to $0$.\\\\
+	When $f(x)$ is even the terms with odd function (sine terms) will equal to $0$, and terms with even function (first term and cosine terms) will give a value.
+	\begin{center}
+		(Note that $a_0 = a_0 \cos(0x)$)
+	\end{center}
+	How do we know that a function is even or that it is odd?\\
+	Simply, for a function $f(x)$ when $f(x) = f(-x)$ this function is even function.\\
+	If $f(x) = -f(-x)$, this function is odd function. \cite{storyofmathematics.com_2021}\\
+	
+	Here some of even and odd functions:\\
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{|c|c|}
+			\hline \textbf{\large Even} & \textbf{\large Odd}\\
+			\hline $x^2$ & $x$\\
+			\hline $x^4$ & $x^3$\\
+			\hline $x^6$ & $x^5$\\
+			\hline $\cos(x)$ & $\sin(x)$\\
+			\hline
+		\end{tabular}
+		\caption{Some of Even and Odd Functions}
+		\label{table_even_odd_func}
+	\end{table}
+	\pagebreak
+	
+	\begin{flalign}\nonumber
+		2.\hspace{0.3cm} &f(x) = x^2\hspace{0.1cm} , \hspace{2cm} -\pi \leq x \leq \pi&
+	\end{flalign}\\
+	
+	\textbf{Solution}:\\
+	{\color{darkgray}
+		\begin{flalign*}
+			f(x) = a_0 + \sum_{n = 1}^\infty a_n \cos(nt) + b_n \sin(nt)
+		\end{flalign*}
+	}
+
+	We observe that $f(x)$ is even, So 
+	{\color{darkgray}
+		\begin{flalign*}
+			b_n &= 0,\\ \\
+			a_0 &= \frac{1}{2\pi} \int_{-\pi}^{\pi} f(x)\,dx\\
+			&= \frac{1}{2\pi} \int_{-\pi}^{\pi} x^2\,dx\\
+			&= \frac{1}{2\pi} \left[\frac{1}{3}x^3\right]_{-\pi}^{\pi}\\
+			&= \frac{1}{6\pi} \left[(\pi)^3 - (-\pi)^3\right]_{-\pi}^{\pi}\\
+			&= \frac{1}{6\pi} \left[\pi^3 + \pi^3\right]\\
+			&= \frac{1}{6\pi} \left[2\pi^3\right]\\
+			&= \frac{2\pi^3}{6\pi}\\
+			&= \frac{1}{3}\hspace{0.1cm}\pi^2\\
+		\end{flalign*}
+		\begin{flalign*}
+			a_n &= \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) cos(nx)\,dx\\
+			&= \frac{1}{\pi} \int_{-\pi}^{\pi} x^2 cos(nx)\,dx
+		\end{flalign*}
+	}
+	Integrate by parts
+	\begin{flalign*}
+		\int u\hspace{0.1cm}\frac{dv}{dx}\,dx = uv - \int v\hspace{0.1cm}\frac{du}{dx}\,dx
+	\end{flalign*}
+	{\color{darkgray}
+		\begin{flalign*}
+			&= \frac{1}{\pi} \left[\frac{x^2}{n}\sin(nx) - \frac{2}{n}\int x \sin(nx)\,dx\right]_{-\pi}^{\pi}\\
+			&= \frac{1}{\pi} \left[\frac{x^2}{n}\sin(nx) - \frac{2}{n}\left[-\frac{x}{n}\cos(nx) - (-\frac{1}{n}) \int \cos(nx)\,dx\right] \right]_{-\pi}^{\pi}\\
+			&= \frac{1}{\pi} \left[\frac{x^2}{n}\sin(nx) + \frac{2}{n^2}\left[x\cos(nx) - \frac{1}{n} \sin(nx)\right] \right]_{-\pi}^{\pi}
+		\end{flalign*}
+		\begin{adjustwidth}{-90pt}{0pt}
+			\begin{flalign*}
+				&= \frac{1}{\pi} \left[ \left(\frac{\pi^2}{n}\sin(n\pi) + \frac{2}{n^2}\left[\pi \cos(n\pi) - \frac{1}{n} \sin(n\pi)\right]\right) - \left(\frac{(-\pi)^2}{n}\sin(-n\pi) + \frac{2}{n^2}\left[-\pi \cos(-n\pi) - \frac{1}{n} \sin(-n\pi)\right]\right) \right]\\
+			\end{flalign*}
+		\end{adjustwidth}
+	}
+	$\sin(n\pi) = \sin(-n\pi) = 0,$\\
+	$\therefore$ all terms have $\sin(n\pi)$ will equal to $0$
+	{\color{darkgray}
+		\begin{flalign*}
+			&= \frac{1}{\pi} \left[ \left(0 + \frac{2}{n^2}\left[\pi \cos(n\pi) - 0\right]\right) - \left(0 + \frac{2}{n^2}\left[-\pi \cos(-n\pi) - 0\right]\right) \right]\\
+			&= \frac{1}{\pi} \left[\frac{2}{n^2}\pi \cos(n\pi) - \frac{2}{n^2}-\pi \cos(-n\pi)\right]\\
+			&= \frac{1}{\pi} \left[\frac{2}{n^2}\pi \cos(n\pi) + \frac{2\pi}{n^2} \cos(-n\pi)\right]\\
+			&= \frac{1}{\pi} (\frac{2}{n^2}) \left[\pi \cos(n\pi) + \pi \cos(-n\pi)\right]\\
+			&= \frac{2}{n^2\pi} \left[2 \pi \cos(n\pi)\right]\\
+			&= \frac{4\pi}{n^2\pi}\cos(n\pi)\\
+			&= \frac{4}{n^2}\cos(n\pi)\\
+		\end{flalign*}
+	}
+	From equation (\ref{eq_cos_n_pi})
+	{\color{darkgray}
+		\begin{flalign*}
+			a_n= (-1)^n \hspace{0.1cm} \frac{4}{n^2}\\
+		\end{flalign*}
+	}
+	\pagebreak
+	
+	{\color{darkgray}
+		\begin{flalign*}
+			f(x) &= a_0 + \sum_{n = 1}^\infty a_n \cos(nt) + b_n \sin(nt)\\
+			&= \frac{1}{3}\hspace{0.1cm}\pi^2 + \sum_{n = 1}^\infty (-1)^n \hspace{0.1cm} \frac{4}{n^2}\cos(nt) + 0\\
+			&= \frac{1}{3}\hspace{0.1cm}\pi^2 + \sum_{n = 1}^\infty (-1)^n \hspace{0.1cm} \frac{4}{n^2}\cos(nt)
+		\end{flalign*}
+		\begin{adjustwidth}{-80pt}{0pt}
+			\begin{flalign*}
+				&= \frac{1}{3}\hspace{0.1cm}\pi^2 + (-1)^1 \hspace{0.1cm} \frac{4}{1^2}\cos(t) + (-1)^2 \hspace{0.1cm} \frac{4}{2^2}\cos(2t) + (-1)^3 \hspace{0.1cm} \frac{4}{3^2}\cos(3t) + (-1)^4 \hspace{0.1cm} \frac{4}{4^2}\cos(4t) + (-1)^5 \hspace{0.1cm} \frac{4}{5^2}\cos(5t) + ...
+			\end{flalign*}
+		\end{adjustwidth}
+		\begin{flalign*}
+			&= \frac{1}{3}\hspace{0.1cm}\pi^2 - \frac{4}{1}\cos(t) + \frac{4}{4}\cos(2t) - \frac{4}{9}\cos(3t) + \frac{4}{16}\cos(4t) - \frac{4}{25}\cos(5t) + ...\\
+			&= \frac{1}{3}\hspace{0.1cm}\pi^2 - 4\cos(t) + 1\cos(2t) - \frac{4}{9}\cos(3t) + \frac{1}{4}\cos(4t) - \frac{4}{25}\cos(5t) + ...\\
+		\end{flalign*}
+	}
+	\pagebreak
+
+	\section{Fourier Transforms}
+	\label{sec_fourier_transform}
+	\textbf{\Large F}ourier transform is a mathematical transform that decomposes functions depending on space or time into functions depending on frequency. \cite{wikipedia_fourier_transform}
+	
+	\subsection{Fourier Transform General Equation}
+	For $f(t)$, $F(\omega)$ is its Fourier transform\\\\
+	\textbf{$f(t)$ is neither even nor odd function}
+	\begin{equation}
+		F(\omega) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}f(t)\hspace{0.1cm}e^{-i\omega t}\,dt
+	\end{equation}
+	where $\omega$ is the angular frequency\\\\
+	\textbf{$f(t)$ is even function}
+	\begin{equation}
+		F(\omega) = \frac{2}{\sqrt{2\pi}}\int_{0}^{\infty}f(t)\hspace{0.1cm}\cos(\omega t)\,dt
+	\end{equation}
+	\textbf{$f(t)$ is odd function}
+	\begin{equation}
+		F(\omega) = \frac{2}{\sqrt{2\pi}}\int_{0}^{\infty}f(t)\hspace{0.1cm}\sin(\omega t)\,dt
+	\end{equation}\\
+	\textbf{Some mathematicians prefer this form}
+	\begin{equation}
+		F(k) = \int_{-\infty}^{\infty}f(x)\hspace{0.1cm}e^{-2\pi i k x}\,dx
+	\end{equation}
+	and inverse Fourier transform will be
+	\begin{equation}
+		f(x) = \int_{-\infty}^{\infty}F(k)\hspace{0.1cm}e^{2\pi i k x}\,dk
+	\end{equation}
+	\pagebreak
+	\subsection{Common Fourier Transform Pairs}
+	For $f(x)$, both forward Fourier transform and inverse Fourier transform is called its Fourier transform pair.\\
+	
+	The following table summarize some common of these pairs
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{|c|c|c|}\hline
+			\textbf{Function} & $f(x)$ & $F(k)$\\ \hline
+			1 & 1 & $\delta(k)$\\ \hline
+			cosine & $\cos(2\pi k_0 x)$ & $\frac{1}{2}[\delta(k - k_0) + \delta(k + k_0)]$\\ \hline
+			delta & $\delta(x - x_0)$ & $e^{-2\pi i k x_0}$\\ \hline
+			ramp & R(x) & $\pi i \delta(2\pi k) - \frac{1}{4\pi^2 k^2}$\\ \hline
+			sine & $\sin(2\pi k_0 x)$ & $\frac{1}{2} i [[\delta(k + k_0) - \delta(k - k_0)]]$\\ \hline
+		\end{tabular}
+		\caption{Common Fourier transform pairs}
+		\label{table_fourier_trans_pairs}
+	\end{table}
+	
+	\subsection{Discrete Fourier Transform}
+	Discrete Fourier transforms (DFTs) are extremely useful because they reveal periodicity in input data as well as the relative strengths of any periodic components. \cite{osama_2020} \\
+	
+	For a discrete function $f(x)$\\
+	\textbf{Forward transform}
+	\begin{equation}
+		F_n = \sum_{k = 0}^{N - 1} f_k e^{-2\pi i n k/N}
+	\end{equation}
+	\textbf{Inverse transform}
+	\begin{equation}
+		f_k = \frac{1}{N}\sum_{n = 0}^{N - 1} F_n e^{2\pi i k n/N}
+	\end{equation}
+
+	\pagebreak
+	
+	\section{Z - Transforms}
+	Z-Transform usually generate a geometric series..
+	
+	\subsection{Revision on Geometric Series}
+	
+	In mathematics, a geometric series is a series with a constant ratio between successive terms. \cite{osama_2019}\\
+
+	For example, the series
+	\begin{flalign*}
+		&\frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \frac{1}{16} + ...
+	\end{flalign*}
+	is geometric, because each successive term can be obtained by multiplying the previous term by $\frac{1}{2}$\\\\
+	\textbf{General formula}\\
+	\begin{flalign}
+		r^0 &+ r^1 + r^2 + r^3 + r^4 + ...\\\nonumber
+		= 1 &+ r^1 + r^2 + r^3 + r^4 + ... = \frac{1}{1 - r}\hspace{1.5cm} ,|r| < 1
+	\end{flalign}
+	where $r$ is the constant ratio.\\
+	
+	So if $S_\infty$ is a geometric series,\\
+	\begin{flalign*}
+		S_\infty = \frac{First\hspace{0.2cm}Term}{1 - r}
+	\end{flalign*}
+
+	\subsection{Z-Transform General Equation}
+	The unilateral Z-transform of a sequence $\left(a_k\right)_{k=0}^\infty$ is defined as
+	\begin{equation}
+		Z[\left(a_k\right)_{k=0}^\infty](z) = \sum_{k = 0}^{\infty} \frac{a_k}{z^k}
+	\end{equation}
+	or
+	\begin{equation}
+		f(z) = \sum_{n = 0}^{\infty} F(nT) z^{-n}
+	\end{equation}
+	\pagebreak
+	
+	\subsection{Common Z-Transforms}
+	
+	The following table summarize the z-transforms for some common functions
+	\begin{table}[h!]
+		\centering
+		\begin{tabular}{|c|c|}\hline
+			$a_n$ & $Z[\left(a_k\right)_{k=0}^\infty](z)$\\ \hline
+			$\delta_{0n}$ & 1 \\ \hline
+			$(-1)^n$ & $\frac{z}{z - 1}$\\ \hline
+			$n$ & $\frac{z}{(z-1)^2}$\\ \hline
+			$n^2$ & $\frac{z(z + 1)}{(z-1)^3}$\\ \hline
+			$n^3$ & $\frac{z(z^2 + 4z + 1)}{(z-1)^4}$\\ \hline
+			$b^n$ & $\frac{z}{z-b}$\\ \hline
+			$b^n n^2$ & $\frac{bz(b + z)}{(z-b)^3}$\\ \hline
+			$\cos(\alpha n)$ & $\frac{z(z - \cos(\alpha))}{z^2 - 2\hspace{0.1cm}z\cos(\alpha) + 1}$\\ \hline
+			$\sin(\alpha n)$ & $\frac{z\sin(\alpha)}{z^2 - 2\hspace{0.1cm}z\cos(\alpha) + 1}$\\ \hline
+		\end{tabular}
+		\caption{Common Z-transform pairs}
+		\label{table_fourier_trans_pairs}
+	\end{table}\\\\
+
+	\textbf{\Large Note that:} \cite{osama_2020} \\
+	The discrete Fourier transform is a special case of the z-transform with
+	\begin{flalign*}
+		z \equiv e^{-2\pi i k/N}
+	\end{flalign*}
+	and a z-transform with
+	\begin{flalign*}
+		z \equiv e^{-2\pi i k \alpha/N}
+	\end{flalign*}
+	for $\alpha \neq \pm 1$ is called a fractional Fourier transform.
+
+
+
+
+
+	\pagebreak
+
+	\section{Exercises}
+	
+		Find Laplace Transform for $f(t)$:
+	\begin{flalign}\nonumber
+		1.\hspace{0.3cm} &f(t) = 1&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		2.\hspace{0.3cm} &f(t) = 4\cos(4t) - \sin(4t) + 2\cos(10t)&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		3.\hspace{0.3cm} &f(t) = 3\sinh(2t) + 3\sin(2t)&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		4.\hspace{0.3cm} &f(t) = e^{3t} + \cos(6t) - e^{3t}\cos(6t)&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		5.\hspace{0.3cm} &f(t) = 6e^{-5t} + e^{3t} + 5t^3 - 9&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		6.\hspace{0.3cm} &f(t) = t\cosh(3t)&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		7.\hspace{0.3cm} &f(t) = t^2\sin(2t)&
+	\end{flalign}
+
+	\pagebreak
+	
+		Find Inverse Laplace Transform for $F(s)$:
+	\begin{flalign}\nonumber
+		1.\hspace{0.3cm} &F(s) = \frac{6}{s} - \frac{1}{s-8} + \frac{4}{s-3}&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		2.\hspace{0.3cm} &F(s) = \frac{19}{s+2} - \frac{1}{3s-5} + \frac{7}{s^5}&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		3.\hspace{0.3cm} &F(s) = \frac{6s}{s^2 + 25} + \frac{3}{s^2 + 25}&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		4.\hspace{0.3cm} &F(s) = \frac{8}{3s^2 + 12} + \frac{3}{s^2 - 49}&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		5.\hspace{0.3cm} &F(s) = \frac{6s - 5}{s^2 + 7}&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		6.\hspace{0.3cm} &F(s) = \frac{1-3s}{s^2+8s+21}&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		7.\hspace{0.3cm} &F(s) = \frac{3s-2}{2s^2 - 6s - 2}&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		8.\hspace{0.3cm} &F(s) = \frac{s+7}{s^2 - 3s - 10}&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		9.\hspace{0.3cm} &F(s) = \frac{2-5s}{(s-6)(s^2+11)}&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		10.\hspace{0.3cm} &F(s) = \frac{25}{s^3(s^2+4s+5)}&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		11.\hspace{0.3cm} &F(s) = \frac{86s-78}{(s+3)(s-4)(5s-1)}&
+	\end{flalign}
+
+	\pagebreak
+
+		Find Fourier series of $f(x)$:
+	\begin{flalign}\nonumber
+		1.\hspace{0.3cm} &f(x) = x\hspace{0.3cm}, \hspace{2cm} -\pi\leq x \leq \pi&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		2.\hspace{0.3cm} &f(x) =
+		\left\{
+		\begin{array}{ll}
+			0  & \mbox{if } -\pi\leq x \leq 0\\
+			\pi & \mbox{if }  \hspace{0.5cm}0 \leq x \leq \pi
+		\end{array}
+		\right.&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		3.\hspace{0.3cm} &f(x) =
+		\left\{
+		\begin{array}{ll}
+			-\frac{\pi}{2}  & \mbox{if } -\pi\leq x \leq 0\\
+			\frac{\pi}{2} & \mbox{if }  \hspace{0.5cm}0 \leq x \leq \pi
+		\end{array}
+		\right.&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		4.\hspace{0.3cm} &f(x) =
+		\left\{
+		\begin{array}{ll}
+			0  & \mbox{if } -2\leq x \leq 0\\
+			x & \mbox{if }  \hspace{0.5cm}0 \leq x \leq 2
+		\end{array}
+		\right.&
+	\end{flalign}
+	Find the Fourier cosine series
+	\begin{flalign}\nonumber
+		5.\hspace{0.3cm} &f(x) = x, \hspace{2cm} x\in[0,\pi]&
+	\end{flalign}
+	Find the Fourier sine series
+	\begin{flalign}\nonumber
+		6.\hspace{0.3cm} &f(x) = 1, \hspace{2cm} x\in[0,\pi]&
+	\end{flalign}
+	Find the Fourier sine series
+	\begin{flalign}\nonumber
+		7.\hspace{0.3cm} &f(x) = cos(x), \hspace{2cm} x\in[0,\pi]&
+	\end{flalign}
+	
+	\pagebreak
+	
+		Find Z-Transform $(z[x_n])$ for the sequence $x_n$:
+	\begin{flalign}\nonumber
+		1.\hspace{0.3cm} &x_n = (\frac{1}{2})^n&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		2.\hspace{0.3cm} &x_n = n&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		3.\hspace{0.3cm} &x_n = x(nT) =
+		\left\{
+		\begin{array}{ll}
+			1  & \mbox{if } n \geq 0 \\
+			0 & \mbox{if } n < 0
+		\end{array}
+		\right.&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		4.\hspace{0.3cm} &x_n = e^{-ant}&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		5.\hspace{0.3cm} &x_n = x(nT) = a^n \cos\left(\frac{n\pi}{2}\right)&
+	\end{flalign}
+	
+
+
+\pagebreak
+
+		Prove That:
+	\begin{flalign}\nonumber
+		1.\hspace{0.3cm} &L[c] = \frac{c}{s}&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		2.\hspace{0.3cm} &L[e^{at}] = \frac{1}{s - a}&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		3.\hspace{0.3cm} &L[t^n] = \frac{n!}{s^{n+1}}&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		4.\hspace{0.3cm} &\int_{-\pi}^{\pi} \sin(nx)\,dx = 0&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		5.\hspace{0.3cm} &\int_{-\pi}^{\pi} \cos(nx)\,dx = 0&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		6.\hspace{0.3cm} &\int_{-\pi}^{\pi} \sin(mx)\cos(nx)\,dx = 0&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		7.\hspace{0.3cm} &\int_{-\pi}^{\pi} \cos(nx)\cos(nx)\,dx = 0&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		8.\hspace{0.3cm} &\int_{-\pi}^{\pi} \sin(mx)\sin(nx)\,dx = 0&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		9.\hspace{0.3cm} &a_0 = \frac{1}{2\pi} \int_{-\pi}^{\pi} f(x)\,dx&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		10.\hspace{0.3cm} &a_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x)\cos(nx)\,dx = 0&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		11.\hspace{0.3cm} &b_n = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x)\sin(nx)\,dx = 0&
+	\end{flalign}
+	\begin{flalign}\nonumber
+		11.\hspace{0.3cm} &F_x[f^n(x)](k) = (2\pi ik)^n F_x[f(x)](k)&
+	\end{flalign}
+
+
+	\pagebreak
+	\bibliography{references}
+	\bibliographystyle{unsrt}
+\end{document}
